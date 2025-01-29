@@ -3,18 +3,17 @@
 #include<vector>
 using namespace std;
 
-bool palindrome(string s,int start,int end){
-    if(start>=end) return true;
-    if(s[start]!=s[end]) return false;
-    return palindrome(s,start+1,end-1);
-    
+
+long long fibonacci(long long n,vector<long long> &dp){
+    if(n<=1) return n;
+    if(dp[n]!=-1) return dp[n];
+    return dp[n]=fibonacci(n-1,dp)+fibonacci(n-2,dp);
 }
 int main(){
-    //sum of given number by using recusion
-   string s="";
-   cout<<"enter the string :";
-   cin>>s;
-   if(palindrome(s,0,s.size()-1)) cout<<"string is plaindrome";
-   else cout<<"string is not palindrome";
+    //finding the fibonnaci series 
+    long long n=80;
+    vector<long long> dp(n+1,-1);
+    cout<<fibonacci(n,dp);
+    return 0;
     
 }

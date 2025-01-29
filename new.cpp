@@ -1,19 +1,30 @@
-// Online C++ compiler to run C++ program online
-#include <iostream>
-#include<vector>
+#include<bits/stdc++.h>
 using namespace std;
+//genrate all subsequence
+
+void printSubsequeuece(vector<int> arr,int index,vector<vector<int>> &ans,vector<int> &nums){
+    if(index>=arr.size()){
+        ans.push_back(nums);
+        return;
+    }
+    nums.push_back(arr[index]);
+    printSubsequeuece(arr,index+1,ans,nums);
+    nums.pop_back();
+    printSubsequeuece(arr,index+1,ans,nums);
 
 
-long long fibonacci(long long n,vector<long long> &dp){
-    if(n<=1) return n;
-    if(dp[n]!=-1) return dp[n];
-    return dp[n]=fibonacci(n-1,dp)+fibonacci(n-2,dp);
 }
+
 int main(){
-    //finding the fibonnaci series 
-    long long n=80;
-    vector<long long> dp(n+1,-1);
-    cout<<fibonacci(n,dp);
+    vector<int> arr={3,1,2};
+    vector<int> nums={};
+    vector<vector<int>> ans;
+    printSubsequeuece(arr,0,ans,nums);
+    for(int i=0;i<ans.size();i++){
+        for(int j=0;j<ans[i].size();j++){
+            cout<<ans[i][j]<<" ";
+        }
+        cout<<endl;
+    }
     return 0;
-    
 }
